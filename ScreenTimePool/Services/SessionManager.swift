@@ -338,6 +338,25 @@ final class SessionManager: ObservableObject {
         }
     }
 
+    // MARK: - Live App Selection
+
+    /// Reapply shields for the current phase using the latest app selection.
+    func reapplyCurrentShields() {
+        switch phase {
+        case .idle:
+            screenTimeManager?.removeAllShields()
+            screenTimeManager?.applyIdleShield()
+        case .downtime:
+            screenTimeManager?.removeAllShields()
+            screenTimeManager?.applyDowntimeShield()
+        case .exhausted:
+            screenTimeManager?.removeAllShields()
+            screenTimeManager?.applyExhaustedShield()
+        case .active:
+            break // No shields during active sessions
+        }
+    }
+
     // MARK: - Midnight Reset
 
     func checkMidnightReset() {

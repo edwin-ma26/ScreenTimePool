@@ -1,18 +1,12 @@
 import SwiftUI
 import FirebaseFirestore
 
-enum LeaderboardSort: Int, CaseIterable {
-    case highestFirst = 0
-    case lowestFirst = 1
-}
-
 struct SocialView: View {
     @EnvironmentObject var authService: AuthService
 
     @State private var friendships: [Friendship] = []
     @State private var incomingRequests: [FriendRequest] = []
     @State private var leaderboardEntries: [LeaderboardEntry] = []
-    @State private var sortOrder: LeaderboardSort = .highestFirst
     @State private var isLoading = false
     @State private var showAddFriend = false
     @State private var showFriendRequests = false
@@ -21,11 +15,10 @@ struct SocialView: View {
     @State private var requestsListener: ListenerRegistration?
 
     var sortedEntries: [LeaderboardEntry] {
-        switch sortOrder {
-        case .highestFirst:
-            return leaderboardEntries.sorted { $0.remainingPoolSeconds > $1.remainingPoolSeconds }
-        case .lowestFirst:
-            return leaderboardEntries.sorted { $0.remainingPoolSeconds < $1.remainingPoolSeconds }
+        leaderboardEntries.sorted {
+            let used0 = ($0.dailyPoolMinutes * 60) - $0.remainingPoolSeconds
+            let used1 = ($1.dailyPoolMinutes * 60) - $1.remainingPoolSeconds
+            return used0 < used1
         }
     }
 
@@ -47,19 +40,7 @@ struct SocialView: View {
                     }
                 }
 
-                Section {
-                    Picker("Sort", selection: $sortOrder) {
-                        Text("Highest First").tag(LeaderboardSort.highestFirst)
-                        Text("Lowest First").tag(LeaderboardSort.lowestFirst)
-                    }
-                    .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-                } header: {
-                    Text("Leaderboard")
-                }
-
-                Section {
+                Section("Leaderboard") {
                     if isLoading {
                         HStack {
                             Spacer()

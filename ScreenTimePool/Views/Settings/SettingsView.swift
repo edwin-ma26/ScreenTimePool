@@ -4,6 +4,7 @@ import FamilyControls
 struct SettingsView: View {
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var screenTimeManager: ScreenTimeManager
+    @EnvironmentObject var sessionManager: SessionManager
     @State private var dailyPoolMinutes: Int
     @State private var sessionDurationMinutes: Int
     @State private var downtimeDurationMinutes: Int
@@ -166,6 +167,7 @@ struct SettingsView: View {
                                         showAppPickerPasscodePrompt = true
                                     } else {
                                         screenTimeManager.saveSelection(familyActivitySelection)
+                                        sessionManager.reapplyCurrentShields()
                                         showAppPicker = false
                                     }
                                 }
@@ -177,6 +179,7 @@ struct SettingsView: View {
                             Button("Confirm") {
                                 if enteredPasscode == AppGroupDataStore.shared.settingsPasscode {
                                     screenTimeManager.saveSelection(familyActivitySelection)
+                                    sessionManager.reapplyCurrentShields()
                                     showAppPicker = false
                                 } else {
                                     passcodeError = "Incorrect passcode"

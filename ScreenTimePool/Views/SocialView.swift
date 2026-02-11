@@ -7,7 +7,6 @@ struct SocialView: View {
     @State private var friendships: [Friendship] = []
     @State private var incomingRequests: [FriendRequest] = []
     @State private var leaderboardEntries: [LeaderboardEntry] = []
-    @State private var sortLowestFirst = true
     @State private var isLoading = false
     @State private var showAddFriend = false
     @State private var showFriendRequests = false
@@ -16,10 +15,10 @@ struct SocialView: View {
     @State private var requestsListener: ListenerRegistration?
 
     var sortedEntries: [LeaderboardEntry] {
-        if sortLowestFirst {
-            return leaderboardEntries.sorted { $0.remainingPoolSeconds < $1.remainingPoolSeconds }
-        } else {
-            return leaderboardEntries.sorted { $0.remainingPoolSeconds > $1.remainingPoolSeconds }
+        leaderboardEntries.sorted {
+            let used0 = ($0.dailyPoolMinutes * 60) - $0.remainingPoolSeconds
+            let used1 = ($1.dailyPoolMinutes * 60) - $1.remainingPoolSeconds
+            return used0 < used1
         }
     }
 
@@ -27,7 +26,6 @@ struct SocialView: View {
         NavigationStack {
             List {
                 pendingRequestsSection
-                leaderboardSortSection
                 leaderboardEntriesSection
                 friendsSection
             }
@@ -73,23 +71,9 @@ struct SocialView: View {
         }
     }
 
-    private var leaderboardSortSection: some View {
-        Section {
-            Picker("Sort", selection: $sortLowestFirst) {
-                Text("Lowest First").tag(true)
-                Text("Highest First").tag(false)
-            }
-            .pickerStyle(.segmented)
-            .listRowBackground(Color.clear)
-            .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-        } header: {
-            Text("Leaderboard")
-        }
-    }
-
     @ViewBuilder
     private var leaderboardEntriesSection: some View {
-        Section {
+        Section("Leaderboard") {
             if isLoading {
                 HStack {
                     Spacer()
