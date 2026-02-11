@@ -1,0 +1,1196 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A100000001 /* ScreenTimePoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000001 /* ScreenTimePoolApp.swift */; };
+		A100000002 /* LocalUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000002 /* LocalUserProfile.swift */; };
+		A100000003 /* LocalSessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000003 /* LocalSessionState.swift */; };
+		A100000004 /* LocalAppSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000004 /* LocalAppSelection.swift */; };
+		A100000005 /* LocalTimeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000005 /* LocalTimeRequest.swift */; };
+		A100000006 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000006 /* AuthService.swift */; };
+		A100000007 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000007 /* FirestoreService.swift */; };
+		A100000008 /* FriendshipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000008 /* FriendshipService.swift */; };
+		A100000009 /* TimeRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000009 /* TimeRequestService.swift */; };
+		A100000010 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000010 /* PushNotificationService.swift */; };
+		A100000011 /* ScreenTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000011 /* ScreenTimeManager.swift */; };
+		A100000012 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000012 /* SessionManager.swift */; };
+		A100000013 /* AppGroupDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000013 /* AppGroupDataStore.swift */; };
+		A100000014 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000014 /* OnboardingViewModel.swift */; };
+		A100000015 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000015 /* DashboardViewModel.swift */; };
+		A100000016 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000016 /* SettingsViewModel.swift */; };
+		A100000017 /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000017 /* FriendsListViewModel.swift */; };
+		A100000018 /* FriendDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000018 /* FriendDetailViewModel.swift */; };
+		A100000019 /* TimeRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000019 /* TimeRequestsViewModel.swift */; };
+		A100000020 /* AddFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000020 /* AddFriendViewModel.swift */; };
+		A100000021 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000021 /* RootView.swift */; };
+		A100000022 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000022 /* MainTabView.swift */; };
+		A100000023 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000023 /* LoadingView.swift */; };
+		A100000024 /* WelcomeStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000024 /* WelcomeStepView.swift */; };
+		A100000025 /* AuthStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000025 /* AuthStepView.swift */; };
+		A100000026 /* FamilyControlsAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000026 /* FamilyControlsAuthView.swift */; };
+		A100000027 /* AppSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000027 /* AppSelectionView.swift */; };
+		A100000028 /* PoolConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000028 /* PoolConfigView.swift */; };
+		A100000029 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000029 /* DashboardView.swift */; };
+		A100000030 /* TimerRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000030 /* TimerRingView.swift */; };
+		A100000031 /* SessionStatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000031 /* SessionStatusBadge.swift */; };
+		A100000032 /* QuickActionsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000032 /* QuickActionsBar.swift */; };
+		A100000033 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000033 /* SettingsView.swift */; };
+		A100000034 /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000034 /* FriendsListView.swift */; };
+		A100000035 /* FriendRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000035 /* FriendRow.swift */; };
+		A100000036 /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000036 /* FriendDetailView.swift */; };
+		A100000037 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000037 /* AddFriendView.swift */; };
+		A100000038 /* FriendRequestsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000038 /* FriendRequestsSheet.swift */; };
+		A100000039 /* TimeRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000039 /* TimeRequestsView.swift */; };
+		A100000040 /* IncomingRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000040 /* IncomingRequestRow.swift */; };
+		A100000041 /* OutgoingRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000041 /* OutgoingRequestRow.swift */; };
+		A100000042 /* RequestTimeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000042 /* RequestTimeSheet.swift */; };
+		A100000043 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000043 /* Date+Extensions.swift */; };
+		A100000044 /* TimeInterval+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000044 /* TimeInterval+Formatting.swift */; };
+		A100000045 /* DeviceActivityName+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000045 /* DeviceActivityName+Extensions.swift */; };
+		A100000046 /* ManagedSettingsStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000046 /* ManagedSettingsStore+Extensions.swift */; };
+		A200000001 /* ScreenTimePoolMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200000001 /* ScreenTimePoolMonitor.swift */; };
+		A300000001 /* FamilyControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000001 /* FamilyControls.framework */; };
+		A300000002 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000002 /* ManagedSettings.framework */; };
+		A300000003 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000003 /* DeviceActivity.framework */; };
+		A300000004 /* FamilyControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000001 /* FamilyControls.framework */; };
+		A300000005 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000002 /* ManagedSettings.framework */; };
+		A300000006 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000003 /* DeviceActivity.framework */; };
+		A400000001 /* ScreenTimePoolMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D200000001 /* ScreenTimePoolMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A500000001 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E100000001 /* FirebaseAuth */; };
+		A500000002 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E100000002 /* FirebaseFirestore */; };
+		A500000003 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E100000003 /* FirebaseMessaging */; };
+		A600000001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0542B5C2F38385A00445D92 /* GoogleService-Info.plist */; };
+		F0542B5E2F3BD08200445D92 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0542B5D2F3BD08200445D92 /* SocialView.swift */; };
+		F0542B642F3C4CF000445D92 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000002 /* ManagedSettings.framework */; };
+		F0542B662F3C4CF000445D92 /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0542B652F3C4CF000445D92 /* ManagedSettingsUI.framework */; };
+		F0542B6E2F3C4CF000445D92 /* ScreenTimePoolShield.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F0542B632F3C4CF000445D92 /* ScreenTimePoolShield.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F0542B8A2F3C4E3D00445D92 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C300000002 /* ManagedSettings.framework */; };
+		F0542B922F3C4E3D00445D92 /* ScreenTimePoolShieldAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F0542B892F3C4E3D00445D92 /* ScreenTimePoolShieldAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F0542B982F3C54C100445D92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0542B972F3C54C100445D92 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F0542B6C2F3C4CF000445D92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0542B622F3C4CF000445D92;
+			remoteInfo = ScreenTimePoolShield;
+		};
+		F0542B902F3C4E3D00445D92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0542B882F3C4E3D00445D92;
+			remoteInfo = ScreenTimePoolShieldAction;
+		};
+		F100000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D200000002;
+			remoteInfo = ScreenTimePoolMonitor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F200000001 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F0542B922F3C4E3D00445D92 /* ScreenTimePoolShieldAction.appex in Embed Foundation Extensions */,
+				F0542B6E2F3C4CF000445D92 /* ScreenTimePoolShield.appex in Embed Foundation Extensions */,
+				A400000001 /* ScreenTimePoolMonitor.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B100000001 /* ScreenTimePoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimePoolApp.swift; sourceTree = "<group>"; };
+		B100000002 /* LocalUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserProfile.swift; sourceTree = "<group>"; };
+		B100000003 /* LocalSessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSessionState.swift; sourceTree = "<group>"; };
+		B100000004 /* LocalAppSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAppSelection.swift; sourceTree = "<group>"; };
+		B100000005 /* LocalTimeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTimeRequest.swift; sourceTree = "<group>"; };
+		B100000006 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B100000007 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		B100000008 /* FriendshipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendshipService.swift; sourceTree = "<group>"; };
+		B100000009 /* TimeRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRequestService.swift; sourceTree = "<group>"; };
+		B100000010 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
+		B100000011 /* ScreenTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeManager.swift; sourceTree = "<group>"; };
+		B100000012 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		B100000013 /* AppGroupDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupDataStore.swift; sourceTree = "<group>"; };
+		B100000014 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		B100000015 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		B100000016 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B100000017 /* FriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
+		B100000018 /* FriendDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailViewModel.swift; sourceTree = "<group>"; };
+		B100000019 /* TimeRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRequestsViewModel.swift; sourceTree = "<group>"; };
+		B100000020 /* AddFriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewModel.swift; sourceTree = "<group>"; };
+		B100000021 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B100000022 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		B100000023 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		B100000024 /* WelcomeStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeStepView.swift; sourceTree = "<group>"; };
+		B100000025 /* AuthStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStepView.swift; sourceTree = "<group>"; };
+		B100000026 /* FamilyControlsAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyControlsAuthView.swift; sourceTree = "<group>"; };
+		B100000027 /* AppSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSelectionView.swift; sourceTree = "<group>"; };
+		B100000028 /* PoolConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolConfigView.swift; sourceTree = "<group>"; };
+		B100000029 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		B100000030 /* TimerRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRingView.swift; sourceTree = "<group>"; };
+		B100000031 /* SessionStatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatusBadge.swift; sourceTree = "<group>"; };
+		B100000032 /* QuickActionsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsBar.swift; sourceTree = "<group>"; };
+		B100000033 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B100000034 /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
+		B100000035 /* FriendRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRow.swift; sourceTree = "<group>"; };
+		B100000036 /* FriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailView.swift; sourceTree = "<group>"; };
+		B100000037 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		B100000038 /* FriendRequestsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestsSheet.swift; sourceTree = "<group>"; };
+		B100000039 /* TimeRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRequestsView.swift; sourceTree = "<group>"; };
+		B100000040 /* IncomingRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingRequestRow.swift; sourceTree = "<group>"; };
+		B100000041 /* OutgoingRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRequestRow.swift; sourceTree = "<group>"; };
+		B100000042 /* RequestTimeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTimeSheet.swift; sourceTree = "<group>"; };
+		B100000043 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		B100000044 /* TimeInterval+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Formatting.swift"; sourceTree = "<group>"; };
+		B100000045 /* DeviceActivityName+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceActivityName+Extensions.swift"; sourceTree = "<group>"; };
+		B100000046 /* ManagedSettingsStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedSettingsStore+Extensions.swift"; sourceTree = "<group>"; };
+		B100000047 /* ScreenTimePool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimePool.entitlements; sourceTree = "<group>"; };
+		B200000001 /* ScreenTimePoolMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimePoolMonitor.swift; sourceTree = "<group>"; };
+		B200000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B200000003 /* ScreenTimePoolMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimePoolMonitor.entitlements; sourceTree = "<group>"; };
+		C300000001 /* FamilyControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FamilyControls.framework; path = System/Library/Frameworks/FamilyControls.framework; sourceTree = SDKROOT; };
+		C300000002 /* ManagedSettings.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettings.framework; path = System/Library/Frameworks/ManagedSettings.framework; sourceTree = SDKROOT; };
+		C300000003 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		D100000001 /* ScreenTimePool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimePool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D200000001 /* ScreenTimePoolMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenTimePoolMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0542B5C2F38385A00445D92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F0542B5D2F3BD08200445D92 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
+		F0542B632F3C4CF000445D92 /* ScreenTimePoolShield.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenTimePoolShield.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0542B652F3C4CF000445D92 /* ManagedSettingsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettingsUI.framework; path = System/Library/Frameworks/ManagedSettingsUI.framework; sourceTree = SDKROOT; };
+		F0542B892F3C4E3D00445D92 /* ScreenTimePoolShieldAction.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenTimePoolShieldAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0542B972F3C54C100445D92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F0542B6F2F3C4CF000445D92 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F0542B622F3C4CF000445D92 /* ScreenTimePoolShield */;
+		};
+		F0542B932F3C4E3D00445D92 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F0542B882F3C4E3D00445D92 /* ScreenTimePoolShieldAction */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F0542B672F3C4CF000445D92 /* ScreenTimePoolShield */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F0542B6F2F3C4CF000445D92 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ScreenTimePoolShield; sourceTree = "<group>"; };
+		F0542B792F3C4D4C00445D92 /* Shield Action Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Shield Action Extension"; sourceTree = "<group>"; };
+		F0542B8B2F3C4E3D00445D92 /* ScreenTimePoolShieldAction */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F0542B932F3C4E3D00445D92 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ScreenTimePoolShieldAction; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F0542B602F3C4CF000445D92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0542B642F3C4CF000445D92 /* ManagedSettings.framework in Frameworks */,
+				F0542B662F3C4CF000445D92 /* ManagedSettingsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0542B862F3C4E3D00445D92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0542B8A2F3C4E3D00445D92 /* ManagedSettings.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F300000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A300000001 /* FamilyControls.framework in Frameworks */,
+				A300000002 /* ManagedSettings.framework in Frameworks */,
+				A300000003 /* DeviceActivity.framework in Frameworks */,
+				A500000001 /* FirebaseAuth in Frameworks */,
+				A500000002 /* FirebaseFirestore in Frameworks */,
+				A500000003 /* FirebaseMessaging in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F300000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A300000004 /* FamilyControls.framework in Frameworks */,
+				A300000005 /* ManagedSettings.framework in Frameworks */,
+				A300000006 /* DeviceActivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		G000000001 = {
+			isa = PBXGroup;
+			children = (
+				G100000001 /* ScreenTimePool */,
+				G200000001 /* ScreenTimePoolMonitor */,
+				F0542B672F3C4CF000445D92 /* ScreenTimePoolShield */,
+				F0542B792F3C4D4C00445D92 /* Shield Action Extension */,
+				F0542B8B2F3C4E3D00445D92 /* ScreenTimePoolShieldAction */,
+				G300000001 /* Products */,
+				G400000001 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		G100000001 /* ScreenTimePool */ = {
+			isa = PBXGroup;
+			children = (
+				F0542B972F3C54C100445D92 /* Assets.xcassets */,
+				B100000001 /* ScreenTimePoolApp.swift */,
+				B100000047 /* ScreenTimePool.entitlements */,
+				G110000001 /* Models */,
+				G120000001 /* Services */,
+				G130000001 /* ViewModels */,
+				G140000001 /* Views */,
+				G150000001 /* Extensions */,
+				F0542B5C2F38385A00445D92 /* GoogleService-Info.plist */,
+			);
+			path = ScreenTimePool;
+			sourceTree = "<group>";
+		};
+		G110000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B100000002 /* LocalUserProfile.swift */,
+				B100000003 /* LocalSessionState.swift */,
+				B100000004 /* LocalAppSelection.swift */,
+				B100000005 /* LocalTimeRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		G120000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B100000006 /* AuthService.swift */,
+				B100000007 /* FirestoreService.swift */,
+				B100000008 /* FriendshipService.swift */,
+				B100000009 /* TimeRequestService.swift */,
+				B100000010 /* PushNotificationService.swift */,
+				B100000011 /* ScreenTimeManager.swift */,
+				B100000012 /* SessionManager.swift */,
+				B100000013 /* AppGroupDataStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		G130000001 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B100000014 /* OnboardingViewModel.swift */,
+				B100000015 /* DashboardViewModel.swift */,
+				B100000016 /* SettingsViewModel.swift */,
+				B100000017 /* FriendsListViewModel.swift */,
+				B100000018 /* FriendDetailViewModel.swift */,
+				B100000019 /* TimeRequestsViewModel.swift */,
+				B100000020 /* AddFriendViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		G140000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F0542B5D2F3BD08200445D92 /* SocialView.swift */,
+				G141000001 /* Shared */,
+				G142000001 /* Onboarding */,
+				G143000001 /* Dashboard */,
+				G144000001 /* Settings */,
+				G145000001 /* Friends */,
+				G146000001 /* TimeRequests */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		G141000001 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B100000021 /* RootView.swift */,
+				B100000022 /* MainTabView.swift */,
+				B100000023 /* LoadingView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		G142000001 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B100000024 /* WelcomeStepView.swift */,
+				B100000025 /* AuthStepView.swift */,
+				B100000026 /* FamilyControlsAuthView.swift */,
+				B100000027 /* AppSelectionView.swift */,
+				B100000028 /* PoolConfigView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		G143000001 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B100000029 /* DashboardView.swift */,
+				B100000030 /* TimerRingView.swift */,
+				B100000031 /* SessionStatusBadge.swift */,
+				B100000032 /* QuickActionsBar.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		G144000001 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B100000033 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		G145000001 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				B100000034 /* FriendsListView.swift */,
+				B100000035 /* FriendRow.swift */,
+				B100000036 /* FriendDetailView.swift */,
+				B100000037 /* AddFriendView.swift */,
+				B100000038 /* FriendRequestsSheet.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		G146000001 /* TimeRequests */ = {
+			isa = PBXGroup;
+			children = (
+				B100000039 /* TimeRequestsView.swift */,
+				B100000040 /* IncomingRequestRow.swift */,
+				B100000041 /* OutgoingRequestRow.swift */,
+				B100000042 /* RequestTimeSheet.swift */,
+			);
+			path = TimeRequests;
+			sourceTree = "<group>";
+		};
+		G150000001 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B100000043 /* Date+Extensions.swift */,
+				B100000044 /* TimeInterval+Formatting.swift */,
+				B100000045 /* DeviceActivityName+Extensions.swift */,
+				B100000046 /* ManagedSettingsStore+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		G200000001 /* ScreenTimePoolMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				B200000001 /* ScreenTimePoolMonitor.swift */,
+				B200000002 /* Info.plist */,
+				B200000003 /* ScreenTimePoolMonitor.entitlements */,
+			);
+			path = ScreenTimePoolMonitor;
+			sourceTree = "<group>";
+		};
+		G300000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D100000001 /* ScreenTimePool.app */,
+				D200000001 /* ScreenTimePoolMonitor.appex */,
+				F0542B632F3C4CF000445D92 /* ScreenTimePoolShield.appex */,
+				F0542B892F3C4E3D00445D92 /* ScreenTimePoolShieldAction.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		G400000001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C300000001 /* FamilyControls.framework */,
+				C300000002 /* ManagedSettings.framework */,
+				C300000003 /* DeviceActivity.framework */,
+				F0542B652F3C4CF000445D92 /* ManagedSettingsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D100000002 /* ScreenTimePool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F500000001 /* Build configuration list for PBXNativeTarget "ScreenTimePool" */;
+			buildPhases = (
+				F400000001 /* Sources */,
+				F600000001 /* Resources */,
+				F300000001 /* Frameworks */,
+				F200000001 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F100000002 /* PBXTargetDependency */,
+				F0542B6D2F3C4CF000445D92 /* PBXTargetDependency */,
+				F0542B912F3C4E3D00445D92 /* PBXTargetDependency */,
+			);
+			name = ScreenTimePool;
+			packageProductDependencies = (
+				E100000001 /* FirebaseAuth */,
+				E100000002 /* FirebaseFirestore */,
+				E100000003 /* FirebaseMessaging */,
+			);
+			productName = ScreenTimePool;
+			productReference = D100000001 /* ScreenTimePool.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D200000002 /* ScreenTimePoolMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F500000002 /* Build configuration list for PBXNativeTarget "ScreenTimePoolMonitor" */;
+			buildPhases = (
+				F400000002 /* Sources */,
+				F300000002 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenTimePoolMonitor;
+			productName = ScreenTimePoolMonitor;
+			productReference = D200000001 /* ScreenTimePoolMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F0542B622F3C4CF000445D92 /* ScreenTimePoolShield */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0542B702F3C4CF000445D92 /* Build configuration list for PBXNativeTarget "ScreenTimePoolShield" */;
+			buildPhases = (
+				F0542B5F2F3C4CF000445D92 /* Sources */,
+				F0542B602F3C4CF000445D92 /* Frameworks */,
+				F0542B612F3C4CF000445D92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F0542B672F3C4CF000445D92 /* ScreenTimePoolShield */,
+			);
+			name = ScreenTimePoolShield;
+			packageProductDependencies = (
+			);
+			productName = ScreenTimePoolShield;
+			productReference = F0542B632F3C4CF000445D92 /* ScreenTimePoolShield.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F0542B882F3C4E3D00445D92 /* ScreenTimePoolShieldAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0542B942F3C4E3D00445D92 /* Build configuration list for PBXNativeTarget "ScreenTimePoolShieldAction" */;
+			buildPhases = (
+				F0542B852F3C4E3D00445D92 /* Sources */,
+				F0542B862F3C4E3D00445D92 /* Frameworks */,
+				F0542B872F3C4E3D00445D92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F0542B8B2F3C4E3D00445D92 /* ScreenTimePoolShieldAction */,
+			);
+			name = ScreenTimePoolShieldAction;
+			packageProductDependencies = (
+			);
+			productName = ScreenTimePoolShieldAction;
+			productReference = F0542B892F3C4E3D00445D92 /* ScreenTimePoolShieldAction.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					D100000002 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					D200000002 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					F0542B622F3C4CF000445D92 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					F0542B882F3C4E3D00445D92 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = F500000003 /* Build configuration list for PBXProject "ScreenTimePool" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = G000000001;
+			packageReferences = (
+				E000000001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = G300000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D100000002 /* ScreenTimePool */,
+				D200000002 /* ScreenTimePoolMonitor */,
+				F0542B622F3C4CF000445D92 /* ScreenTimePoolShield */,
+				F0542B882F3C4E3D00445D92 /* ScreenTimePoolShieldAction */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F0542B612F3C4CF000445D92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0542B872F3C4E3D00445D92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F600000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0542B982F3C54C100445D92 /* Assets.xcassets in Resources */,
+				A600000001 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F0542B5F2F3C4CF000445D92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0542B852F3C4E3D00445D92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F400000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A100000001 /* ScreenTimePoolApp.swift in Sources */,
+				A100000002 /* LocalUserProfile.swift in Sources */,
+				A100000003 /* LocalSessionState.swift in Sources */,
+				A100000004 /* LocalAppSelection.swift in Sources */,
+				A100000005 /* LocalTimeRequest.swift in Sources */,
+				A100000006 /* AuthService.swift in Sources */,
+				A100000007 /* FirestoreService.swift in Sources */,
+				A100000008 /* FriendshipService.swift in Sources */,
+				A100000009 /* TimeRequestService.swift in Sources */,
+				A100000010 /* PushNotificationService.swift in Sources */,
+				A100000011 /* ScreenTimeManager.swift in Sources */,
+				A100000012 /* SessionManager.swift in Sources */,
+				A100000013 /* AppGroupDataStore.swift in Sources */,
+				A100000014 /* OnboardingViewModel.swift in Sources */,
+				A100000015 /* DashboardViewModel.swift in Sources */,
+				A100000016 /* SettingsViewModel.swift in Sources */,
+				A100000017 /* FriendsListViewModel.swift in Sources */,
+				A100000018 /* FriendDetailViewModel.swift in Sources */,
+				A100000019 /* TimeRequestsViewModel.swift in Sources */,
+				A100000020 /* AddFriendViewModel.swift in Sources */,
+				A100000021 /* RootView.swift in Sources */,
+				A100000022 /* MainTabView.swift in Sources */,
+				A100000023 /* LoadingView.swift in Sources */,
+				A100000024 /* WelcomeStepView.swift in Sources */,
+				A100000025 /* AuthStepView.swift in Sources */,
+				A100000026 /* FamilyControlsAuthView.swift in Sources */,
+				A100000027 /* AppSelectionView.swift in Sources */,
+				A100000028 /* PoolConfigView.swift in Sources */,
+				A100000029 /* DashboardView.swift in Sources */,
+				A100000030 /* TimerRingView.swift in Sources */,
+				A100000031 /* SessionStatusBadge.swift in Sources */,
+				A100000032 /* QuickActionsBar.swift in Sources */,
+				A100000033 /* SettingsView.swift in Sources */,
+				A100000034 /* FriendsListView.swift in Sources */,
+				A100000035 /* FriendRow.swift in Sources */,
+				A100000036 /* FriendDetailView.swift in Sources */,
+				F0542B5E2F3BD08200445D92 /* SocialView.swift in Sources */,
+				A100000037 /* AddFriendView.swift in Sources */,
+				A100000038 /* FriendRequestsSheet.swift in Sources */,
+				A100000039 /* TimeRequestsView.swift in Sources */,
+				A100000040 /* IncomingRequestRow.swift in Sources */,
+				A100000041 /* OutgoingRequestRow.swift in Sources */,
+				A100000042 /* RequestTimeSheet.swift in Sources */,
+				A100000043 /* Date+Extensions.swift in Sources */,
+				A100000044 /* TimeInterval+Formatting.swift in Sources */,
+				A100000045 /* DeviceActivityName+Extensions.swift in Sources */,
+				A100000046 /* ManagedSettingsStore+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F400000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A200000001 /* ScreenTimePoolMonitor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F0542B6D2F3C4CF000445D92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0542B622F3C4CF000445D92 /* ScreenTimePoolShield */;
+			targetProxy = F0542B6C2F3C4CF000445D92 /* PBXContainerItemProxy */;
+		};
+		F0542B912F3C4E3D00445D92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0542B882F3C4E3D00445D92 /* ScreenTimePoolShieldAction */;
+			targetProxy = F0542B902F3C4E3D00445D92 /* PBXContainerItemProxy */;
+		};
+		F100000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D200000002 /* ScreenTimePoolMonitor */;
+			targetProxy = F100000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F0542B712F3C4CF000445D92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePoolShield/ScreenTimePoolShield.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimePoolShield/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimePoolShield;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app.ScreenTimePoolShield;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0542B722F3C4CF000445D92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePoolShield/ScreenTimePoolShield.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimePoolShield/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimePoolShield;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app.ScreenTimePoolShield;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F0542B952F3C4E3D00445D92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePoolShieldAction/ScreenTimePoolShieldAction.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimePoolShieldAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimePoolShieldAction;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app.ScreenTimePoolShieldAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0542B962F3C4E3D00445D92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePoolShieldAction/ScreenTimePoolShieldAction.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimePoolShieldAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimePoolShieldAction;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app.ScreenTimePoolShieldAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		H100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		H100000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		H200000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePool/ScreenTimePool.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		H200000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePool/ScreenTimePool.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		H300000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePoolMonitor/ScreenTimePoolMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimePoolMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimePoolMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app.monitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		H300000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScreenTimePoolMonitor/ScreenTimePoolMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFBYT449HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimePoolMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimePoolMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.screentimepool.app.monitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F0542B702F3C4CF000445D92 /* Build configuration list for PBXNativeTarget "ScreenTimePoolShield" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0542B712F3C4CF000445D92 /* Debug */,
+				F0542B722F3C4CF000445D92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0542B942F3C4E3D00445D92 /* Build configuration list for PBXNativeTarget "ScreenTimePoolShieldAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0542B952F3C4E3D00445D92 /* Debug */,
+				F0542B962F3C4E3D00445D92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F500000001 /* Build configuration list for PBXNativeTarget "ScreenTimePool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				H200000001 /* Debug */,
+				H200000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F500000002 /* Build configuration list for PBXNativeTarget "ScreenTimePoolMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				H300000001 /* Debug */,
+				H300000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F500000003 /* Build configuration list for PBXProject "ScreenTimePool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				H100000001 /* Debug */,
+				H100000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E000000001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E100000001 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E000000001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E100000002 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E000000001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E100000003 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E000000001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D000000001 /* Project object */;
+}

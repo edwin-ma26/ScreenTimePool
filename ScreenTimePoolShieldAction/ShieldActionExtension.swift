@@ -1,0 +1,43 @@
+//
+//  ShieldActionExtension.swift
+//  ScreenTimePoolShieldAction
+//
+//  Created by Edwin Ma on 2/11/26.
+//
+
+import ManagedSettings
+
+class ShieldActionExtension: ShieldActionDelegate {
+    override func handle(action: ShieldAction, for application: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        switch action {
+        case .primaryButtonPressed:
+            completionHandler(.close)
+        case .secondaryButtonPressed:
+            completionHandler(.close)
+        @unknown default:
+            completionHandler(.close)
+        }
+    }
+
+    override func handle(action: ShieldAction, for webDomain: WebDomainToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        switch action {
+        case .primaryButtonPressed:
+            completionHandler(.close)
+        case .secondaryButtonPressed:
+            completionHandler(.close)
+        @unknown default:
+            completionHandler(.close)
+        }
+    }
+
+    override func handle(action: ShieldAction, for category: ActivityCategoryToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        switch action {
+        case .primaryButtonPressed:
+            completionHandler(.close)
+        case .secondaryButtonPressed:
+            completionHandler(.close)
+        @unknown default:
+            completionHandler(.close)
+        }
+    }
+}
