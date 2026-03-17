@@ -12,7 +12,7 @@ struct PoolConfigView: View {
                     Text("Configure Your Pool")
                         .font(.title2.bold())
 
-                    Text("Set your daily screen time budget and session parameters.")
+                    Text("Set your daily screen time budget and break parameters.")
                         .font(.body)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -31,8 +31,8 @@ struct PoolConfigView: View {
                     )
 
                     TimePickerRow(
-                        title: "Session Duration",
-                        detail: "Length of each session",
+                        title: "Break Duration",
+                        detail: "Length of each break",
                         minutes: $viewModel.sessionDurationMinutes,
                         maxMinutes: 1380,
                         isExpanded: expandedPicker == "session",
@@ -41,7 +41,7 @@ struct PoolConfigView: View {
 
                     TimePickerRow(
                         title: "Downtime",
-                        detail: "Break between sessions",
+                        detail: "Downtime between breaks",
                         minutes: $viewModel.downtimeDurationMinutes,
                         maxMinutes: 1380,
                         isExpanded: expandedPicker == "downtime",

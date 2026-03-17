@@ -13,6 +13,8 @@ struct TimeRequest: Codable, Identifiable {
     var deductsFromGranter: Bool
     var expiresAt: Date
     var createdAt: Date?
+    var requestedAppsData: Data?
+    var grantedAppsData: Data?
 
     var documentId: String { id ?? "" }
 }
@@ -31,7 +33,8 @@ final class TimeRequestService {
         from: (uid: String, name: String),
         to: (uid: String, name: String),
         minutes: Int,
-        deductsFromGranter: Bool
+        deductsFromGranter: Bool,
+        appsData: Data? = nil
     ) async throws {
         let request = TimeRequest(
             fromUserId: from.uid,
@@ -42,19 +45,24 @@ final class TimeRequestService {
             status: "pending",
             deductsFromGranter: deductsFromGranter,
             expiresAt: Date().addingTimeInterval(3600),
-            createdAt: Date()
+            createdAt: Date(),
+            requestedAppsData: appsData
         )
         _ = try db.collection(collection).addDocument(from: request)
     }
 
     // MARK: - Respond
 
-    func approveRequest(_ request: TimeRequest) async throws {
+    func approveRequest(_ request: TimeRequest, grantedAppsData: Data? = nil) async throws {
         guard let docId = request.id else { return }
-        try await db.collection(collection).document(docId).updateData([
+        var data: [String: Any] = [
             "status": "approved",
             "grantedMinutes": request.requestedMinutes
-        ])
+        ]
+        if let appsData = grantedAppsData {
+            data["grantedAppsData"] = appsData
+        }
+        try await db.collection(collection).document(docId).updateData(data)
     }
 
     func denyRequest(_ request: TimeRequest) async throws {
@@ -64,12 +72,16 @@ final class TimeRequestService {
         ])
     }
 
-    func modifyRequest(_ request: TimeRequest, grantedMinutes: Int) async throws {
+    func modifyRequest(_ request: TimeRequest, grantedMinutes: Int, grantedAppsData: Data? = nil) async throws {
         guard let docId = request.id else { return }
-        try await db.collection(collection).document(docId).updateData([
+        var data: [String: Any] = [
             "status": "modified",
             "grantedMinutes": grantedMinutes
-        ])
+        ]
+        if let appsData = grantedAppsData {
+            data["grantedAppsData"] = appsData
+        }
+        try await db.collection(collection).document(docId).updateData(data)
     }
 
     // MARK: - Listeners

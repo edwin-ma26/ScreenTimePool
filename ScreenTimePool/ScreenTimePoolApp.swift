@@ -44,6 +44,9 @@ struct ScreenTimePoolApp: App {
                         sessionManager.startApprovedRequestListener()
                     }
                 }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+                    sessionManager.pauseForBackground()
+                }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     sessionManager.resumeFromBackground()
                     sessionManager.checkMidnightReset()

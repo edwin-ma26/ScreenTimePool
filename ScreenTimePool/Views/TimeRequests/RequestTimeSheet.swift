@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseFirestore
+import FamilyControls
 
 struct RequestTimeSheet: View {
     let authService: AuthService
@@ -11,6 +12,8 @@ struct RequestTimeSheet: View {
     @State private var error: String?
     @State private var successMessage: String?
     @State private var listener: ListenerRegistration?
+    @State private var selectedApps = FamilyActivitySelection()
+    @State private var showAppPicker = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -39,6 +42,31 @@ struct RequestTimeSheet: View {
 
                 Section("Minutes") {
                     Stepper("\(requestedMinutes) minutes", value: $requestedMinutes, in: 5...120, step: 5)
+                }
+
+                Section("Apps to Unblock") {
+                    let appCount = selectedApps.applicationTokens.count
+                    let catCount = selectedApps.categoryTokens.count
+                    Text("\(appCount) app\(appCount == 1 ? "" : "s"), \(catCount) categor\(catCount == 1 ? "y" : "ies") selected")
+                        .foregroundStyle(.secondary)
+
+                    Button("Choose Apps") { showAppPicker = true }
+
+                    HStack {
+                        Button("Select All") {
+                            if let saved = ScreenTimeManager().loadSelection() {
+                                selectedApps = saved
+                            }
+                        }
+                        .buttonStyle(.bordered)
+                        .font(.caption)
+
+                        Button("Deselect All") {
+                            selectedApps = FamilyActivitySelection()
+                        }
+                        .buttonStyle(.bordered)
+                        .font(.caption)
+                    }
                 }
 
                 if let selectedFriendship {
@@ -76,7 +104,13 @@ struct RequestTimeSheet: View {
                     .disabled(selectedFriendship == nil || isSending)
                 }
             }
-            .onAppear { startListening() }
+            .familyActivityPicker(isPresented: $showAppPicker, selection: $selectedApps)
+            .onAppear {
+                startListening()
+                if let saved = ScreenTimeManager().loadSelection() {
+                    selectedApps = saved
+                }
+            }
             .onDisappear { listener?.remove() }
         }
     }
@@ -101,12 +135,15 @@ struct RequestTimeSheet: View {
         let friendName = friendship.friendDisplayName(for: uid)
         let deducts = friendship.deductsOnGrant(for: friendId)
 
+        let appsData = try? PropertyListEncoder().encode(selectedApps)
+
         do {
             try await TimeRequestService.shared.createTimeRequest(
                 from: (uid: uid, name: name),
                 to: (uid: friendId, name: friendName),
                 minutes: requestedMinutes,
-                deductsFromGranter: deducts
+                deductsFromGranter: deducts,
+                appsData: appsData
             )
             successMessage = "Request sent!"
             try? await Task.sleep(for: .seconds(1))

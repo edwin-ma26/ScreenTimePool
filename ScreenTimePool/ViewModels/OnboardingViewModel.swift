@@ -96,6 +96,7 @@ final class OnboardingViewModel: ObservableObject {
 
     func saveAppSelection() {
         screenTimeManager.saveSelection(familyActivitySelection)
+        screenTimeManager.applyIdleShield()
         nextStep()
     }
 
@@ -120,6 +121,7 @@ final class OnboardingViewModel: ObservableObject {
             )
         }
 
+        screenTimeManager.applyIdleShield()
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
         isLoading = false
     }

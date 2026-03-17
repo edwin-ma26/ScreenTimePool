@@ -70,7 +70,7 @@ struct DashboardView: View {
     private var mainLabel: String {
         switch sessionManager.phase {
         case .idle: return "Pool Remaining"
-        case .active: return "Session"
+        case .active: return "Break"
         case .downtime: return "Downtime"
         case .exhausted: return "Pool Exhausted"
         }
@@ -80,7 +80,7 @@ struct DashboardView: View {
         HStack(spacing: 24) {
             statItem(title: "Pool", value: sessionManager.remainingPoolSeconds.formattedAsHumanReadable)
             Divider().frame(height: 40)
-            statItem(title: "Session", value: "\(AppGroupDataStore.shared.sessionDurationMinutes)m")
+            statItem(title: "Break", value: "\(AppGroupDataStore.shared.sessionDurationMinutes)m")
             Divider().frame(height: 40)
             if sessionManager.phase == .active && sessionManager.downtimeRunningDuringSession {
                 statItem(title: "Break", value: sessionManager.remainingDowntimeSeconds.formattedAsMMSS)

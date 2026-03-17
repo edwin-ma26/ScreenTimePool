@@ -2,6 +2,7 @@ import Foundation
 import FamilyControls
 import ManagedSettings
 import DeviceActivity
+import UserNotifications
 
 @MainActor
 final class ScreenTimeManager: ObservableObject {
@@ -12,6 +13,7 @@ final class ScreenTimeManager: ObservableObject {
     private let idleStore = ManagedSettingsStore(named: .idle)
     private let downtimeStore = ManagedSettingsStore(named: .downtime)
     private let exhaustedStore = ManagedSettingsStore(named: .exhausted)
+    private let bonusStore = ManagedSettingsStore(named: .bonus)
     private let activityCenter = DeviceActivityCenter()
     private let appGroupStore = AppGroupDataStore.shared
 
@@ -105,49 +107,148 @@ final class ScreenTimeManager: ObservableObject {
     }
 
     func removeAllShields() {
+        print("[ScreenTimeManager] removeAllShields: clearing idle, downtime, exhausted, bonus stores")
         idleStore.clearAllSettings()
         downtimeStore.clearAllSettings()
         exhaustedStore.clearAllSettings()
+        bonusStore.clearAllSettings()
+    }
+
+    // MARK: - Bonus Shield (Selective Unblock)
+
+    /// Shields only the apps NOT in the granted selection.
+    /// managedApps - grantedApps = apps that stay blocked.
+    func applySelectiveBonusShield(grantedApps: FamilyActivitySelection) {
+        guard let managed = loadSelection() else {
+            print("[ScreenTimeManager] applySelectiveBonusShield: no managed selection, skipping")
+            return
+        }
+
+        let remainingAppTokens = managed.applicationTokens.subtracting(grantedApps.applicationTokens)
+        let remainingCatTokens = managed.categoryTokens.subtracting(grantedApps.categoryTokens)
+        let remainingWebTokens = managed.webDomainTokens.subtracting(grantedApps.webDomainTokens)
+
+        if remainingAppTokens.isEmpty && remainingCatTokens.isEmpty && remainingWebTokens.isEmpty {
+            print("[ScreenTimeManager] applySelectiveBonusShield: all apps granted, no bonus shield needed")
+            return
+        }
+
+        print("[ScreenTimeManager] applySelectiveBonusShield: shielding \(remainingAppTokens.count) apps, \(remainingCatTokens.count) categories")
+        bonusStore.shield.applications = remainingAppTokens.isEmpty ? nil : remainingAppTokens
+        bonusStore.shield.applicationCategories = remainingCatTokens.isEmpty
+            ? nil
+            : .specific(remainingCatTokens)
+        bonusStore.shield.webDomains = remainingWebTokens.isEmpty ? nil : remainingWebTokens
+    }
+
+    func removeBonusShield() {
+        bonusStore.clearAllSettings()
     }
 
     // MARK: - DeviceActivity Scheduling
 
-    func scheduleSessionMonitoring(durationSeconds: Int) {
+    func scheduleUsageEvent(durationMinutes: Int) {
+        guard let selection = loadSelection() else {
+            print("[ScreenTimeManager] scheduleUsageEvent: NO selection found")
+            return
+        }
+
+        // Stop previous session monitoring so usage counter resets
+        activityCenter.stopMonitoring([.session])
+
+        // Broad schedule: start now, end 1 hour later
         let now = Date()
-        let end = now.adding(seconds: durationSeconds)
+        let end = now.addingTimeInterval(3600)
 
         let schedule = DeviceActivitySchedule(
-            intervalStart: Calendar.current.dateComponents([.hour, .minute, .second], from: now),
-            intervalEnd: Calendar.current.dateComponents([.hour, .minute, .second], from: end),
+            intervalStart: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now),
+            intervalEnd: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: end),
             repeats: false
         )
 
-        do {
-            try activityCenter.startMonitoring(.session, during: schedule)
-        } catch {
-            print("Failed to schedule session monitoring: \(error)")
+        let event: DeviceActivityEvent
+        if #available(iOS 17.4, *) {
+            event = DeviceActivityEvent(
+                applications: selection.applicationTokens,
+                categories: selection.categoryTokens,
+                webDomains: selection.webDomainTokens,
+                threshold: DateComponents(minute: durationMinutes),
+                includesPastActivity: false
+            )
+            print("[ScreenTimeManager] scheduleUsageEvent: using includesPastActivity=false (iOS 17.4+)")
+        } else {
+            event = DeviceActivityEvent(
+                applications: selection.applicationTokens,
+                categories: selection.categoryTokens,
+                webDomains: selection.webDomainTokens,
+                threshold: DateComponents(minute: durationMinutes)
+            )
+            print("[ScreenTimeManager] scheduleUsageEvent: WARNING - includesPastActivity not available (pre-iOS 17.4)")
         }
+
+        do {
+            try activityCenter.startMonitoring(
+                .session,
+                during: schedule,
+                events: [.sessionThreshold: event]
+            )
+            print("[ScreenTimeManager] scheduleUsageEvent: scheduled \(durationMinutes)m threshold, apps=\(selection.applicationTokens.count), categories=\(selection.categoryTokens.count), start=\(now)")
+        } catch {
+            print("[ScreenTimeManager] scheduleUsageEvent: FAILED \(error)")
+        }
+
+        let durationSeconds = durationMinutes * 60
+        scheduleExpiryNotification(identifier: "session_expiry", seconds: durationSeconds, title: "Session Ended", body: "Your session is over. Break time has started.")
     }
 
     func scheduleDowntimeMonitoring(durationSeconds: Int) {
-        let now = Date()
-        let end = now.adding(seconds: durationSeconds)
+        // DeviceActivity requires >= 15 min intervals. For shorter downtimes,
+        // skip the schedule — shields are already applied, and the in-app timer
+        // or restoreState() handles removal. The notification still fires.
+        if durationSeconds >= 900 {
+            let now = Date()
+            let end = now.addingTimeInterval(TimeInterval(durationSeconds))
 
-        let schedule = DeviceActivitySchedule(
-            intervalStart: Calendar.current.dateComponents([.hour, .minute, .second], from: now),
-            intervalEnd: Calendar.current.dateComponents([.hour, .minute, .second], from: end),
-            repeats: false
-        )
+            let schedule = DeviceActivitySchedule(
+                intervalStart: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now),
+                intervalEnd: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: end),
+                repeats: false
+            )
 
-        do {
-            try activityCenter.startMonitoring(.downtimePeriod, during: schedule)
-        } catch {
-            print("Failed to schedule downtime monitoring: \(error)")
+            do {
+                try activityCenter.startMonitoring(.downtimePeriod, during: schedule)
+                print("[ScreenTimeManager] scheduleDowntimeMonitoring: scheduled \(durationSeconds)s")
+            } catch {
+                print("[ScreenTimeManager] scheduleDowntimeMonitoring: FAILED \(error)")
+            }
+        } else {
+            print("[ScreenTimeManager] scheduleDowntimeMonitoring: \(durationSeconds)s < 15min, skipping DeviceActivity (shields already applied)")
         }
+
+        scheduleExpiryNotification(identifier: "downtime_expiry", seconds: durationSeconds, title: "Break Over", body: "Your break is done. Open ScreenTimePool to start a new session.")
+    }
+
+    private func scheduleExpiryNotification(identifier: String, seconds: Int, title: String, body: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(max(1, seconds)), repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error {
+                print("[ScreenTimeManager] scheduleExpiryNotification: FAILED \(error)")
+            }
+        }
+    }
+
+    func cancelExpiryNotifications() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["session_expiry", "downtime_expiry"])
     }
 
     func stopAllMonitoring() {
         activityCenter.stopMonitoring()
+        cancelExpiryNotifications()
     }
 
     // MARK: - Revocation Check

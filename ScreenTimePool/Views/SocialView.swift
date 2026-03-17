@@ -195,6 +195,17 @@ struct LeaderboardEntry: Identifiable {
         return "\(minutes)m left"
     }
 
+    var usedText: String {
+        let usedSeconds = max(0, (dailyPoolMinutes * 60) - remainingPoolSeconds)
+        let hours = usedSeconds / 3600
+        let minutes = (usedSeconds % 3600) / 60
+        if hours > 0 {
+            return "\(hours)h \(minutes)m used"
+        } else {
+            return "\(minutes)m used"
+        }
+    }
+
     var usagePercent: Double {
         let totalSeconds = dailyPoolMinutes * 60
         guard totalSeconds > 0 else { return 0 }
@@ -223,7 +234,7 @@ struct LeaderboardRow: View {
 
             Spacer()
 
-            Text(entry.remainingText)
+            Text(entry.usedText)
                 .font(.subheadline.monospacedDigit())
                 .foregroundStyle(.secondary)
         }

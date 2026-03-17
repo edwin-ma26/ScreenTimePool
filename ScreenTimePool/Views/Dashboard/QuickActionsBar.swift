@@ -14,10 +14,10 @@ struct QuickActionsBar: View {
         VStack(spacing: 12) {
             switch phase {
             case .idle:
-                actionButton(title: "Start Session", icon: "play.fill", color: .blue, action: onStart)
+                actionButton(title: "Start Break", icon: "play.fill", color: .blue, action: onStart)
 
             case .active:
-                actionButton(title: "End Session Early", icon: "stop.fill", color: .orange, action: onStop)
+                actionButton(title: "End Break Early", icon: "stop.fill", color: .orange, action: onStop)
 
             case .downtime:
                 blockedAppsView

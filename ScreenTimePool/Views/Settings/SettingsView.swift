@@ -51,8 +51,8 @@ struct SettingsView: View {
                     .listRowBackground(Color.clear)
 
                     TimePickerRow(
-                        title: "Session Duration",
-                        detail: "Length of each session",
+                        title: "Break Duration",
+                        detail: "Length of each break",
                         minutes: $sessionDurationMinutes,
                         maxMinutes: 1380,
                         isExpanded: expandedPicker == "session",
@@ -63,7 +63,7 @@ struct SettingsView: View {
 
                     TimePickerRow(
                         title: "Downtime",
-                        detail: "Break between sessions",
+                        detail: "Downtime between breaks",
                         minutes: $downtimeDurationMinutes,
                         maxMinutes: 1380,
                         isExpanded: expandedPicker == "downtime",
@@ -72,7 +72,7 @@ struct SettingsView: View {
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
 
-                    Toggle("Reset downtime after bonus session", isOn: $resetDowntimeAfterSession)
+                    Toggle("Reset downtime after bonus break", isOn: $resetDowntimeAfterSession)
 
                     Button(action: {
                         if AppGroupDataStore.shared.settingsPasscode != nil {
@@ -113,6 +113,12 @@ struct SettingsView: View {
                 Section("App Selection") {
                     Button("Change Managed Apps") {
                         showAppPicker = true
+                    }
+                }
+
+                Section("Debug") {
+                    Button("Reset All Blocks & Downtime", role: .destructive) {
+                        sessionManager.resetAll()
                     }
                 }
 

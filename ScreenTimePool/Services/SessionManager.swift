@@ -2,6 +2,9 @@ import Foundation
 import Combine
 import SwiftData
 import FirebaseFirestore
+import FamilyControls
+import ManagedSettings
+import UIKit
 
 @MainActor
 final class SessionManager: ObservableObject {
@@ -21,6 +24,8 @@ final class SessionManager: ObservableObject {
     private var screenTimeManager: ScreenTimeManager?
     private var modelContext: ModelContext?
     private var approvedListener: ListenerRegistration?
+    private var backgroundTaskID: UIBackgroundTaskIdentifier = .invalid
+    private var backgroundTimer: Timer?
 
     var sessionDurationMinutes: Int {
         appGroupStore.sessionDurationMinutes
@@ -57,8 +62,9 @@ final class SessionManager: ObservableObject {
             Task { @MainActor in
                 for request in requests {
                     let minutes = request.grantedMinutes ?? request.requestedMinutes
-                    print("[SessionManager] processing approved request: \(minutes)m")
-                    self?.addBonusTime(minutes: minutes)
+                    let appsData = request.grantedAppsData ?? request.requestedAppsData
+                    print("[SessionManager] processing approved request: \(minutes)m, hasAppsData=\(appsData != nil)")
+                    self?.addBonusTime(minutes: minutes, grantedAppsData: appsData)
                     try? await TimeRequestService.shared.markAsProcessed(request)
                 }
             }
@@ -76,7 +82,7 @@ final class SessionManager: ObservableObject {
         let sessionSeconds = sessionDurationMinutes * 60
 
         guard remainingPoolSeconds > 0 else {
-            print("[SessionManager] startSession: no pool left, going exhausted")
+            print("[SessionManager] startSession: no pool left, going exhau t   sted")
             transitionTo(.exhausted)
             return
         }
@@ -84,8 +90,10 @@ final class SessionManager: ObservableObject {
         print("[SessionManager] startSession: starting \(sessionSeconds)s session")
         remainingSessionSeconds = sessionSeconds
         totalSessionSeconds = sessionSeconds
+        appGroupStore.poolSecondsAtSessionStart = remainingPoolSeconds
+        screenTimeManager?.stopAllMonitoring()
         screenTimeManager?.removeAllShields()
-        screenTimeManager?.scheduleSessionMonitoring(durationSeconds: sessionSeconds)
+        screenTimeManager?.scheduleUsageEvent(durationMinutes: sessionDurationMinutes)
         transitionTo(.active)
         startTimer()
     }
@@ -97,9 +105,15 @@ final class SessionManager: ObservableObject {
         enterDowntimeAfterSession()
     }
 
-    func addBonusTime(minutes: Int) {
+    func addBonusTime(minutes: Int, grantedAppsData: Data? = nil) {
         let bonusSeconds = minutes * 60
         print("[SessionManager] addBonusTime: \(minutes)m, phase=\(phase), screenTimeManager=\(screenTimeManager != nil), pool=\(remainingPoolSeconds)")
+
+        // Try to decode the granted apps selection for selective unblocking
+        let grantedApps: FamilyActivitySelection? = {
+            guard let data = grantedAppsData else { return nil }
+            return try? PropertyListDecoder().decode(FamilyActivitySelection.self, from: data)
+        }()
 
         switch phase {
         case .downtime:
@@ -109,11 +123,17 @@ final class SessionManager: ObservableObject {
             // Persist bonus flag BEFORE removing shields so extension won't race
             isBonusSession = true
             downtimeRunningDuringSession = true
+            appGroupStore.poolSecondsAtSessionStart = 0
             persistState()
-            screenTimeManager?.removeAllShields()
+            if let grantedApps {
+                screenTimeManager?.removeAllShields()
+                screenTimeManager?.applySelectiveBonusShield(grantedApps: grantedApps)
+            } else {
+                screenTimeManager?.removeAllShields()
+            }
             remainingSessionSeconds = bonusSeconds
             totalSessionSeconds = bonusSeconds
-            screenTimeManager?.scheduleSessionMonitoring(durationSeconds: bonusSeconds)
+            screenTimeManager?.scheduleUsageEvent(durationMinutes: minutes)
             print("[SessionManager] addBonusTime: bonus from downtime, starting \(bonusSeconds)s session")
             transitionTo(.active)
             startTimer()
@@ -123,11 +143,17 @@ final class SessionManager: ObservableObject {
             // Persist bonus flag BEFORE removing shields so extension won't race
             isBonusSession = true
             downtimeRunningDuringSession = false
+            appGroupStore.poolSecondsAtSessionStart = 0
             persistState()
-            screenTimeManager?.removeAllShields()
+            if let grantedApps {
+                screenTimeManager?.removeAllShields()
+                screenTimeManager?.applySelectiveBonusShield(grantedApps: grantedApps)
+            } else {
+                screenTimeManager?.removeAllShields()
+            }
             remainingSessionSeconds = bonusSeconds
             totalSessionSeconds = bonusSeconds
-            screenTimeManager?.scheduleSessionMonitoring(durationSeconds: bonusSeconds)
+            screenTimeManager?.scheduleUsageEvent(durationMinutes: minutes)
             print("[SessionManager] addBonusTime: bonus from exhausted, starting \(bonusSeconds)s session")
             transitionTo(.active)
             startTimer()
@@ -145,7 +171,8 @@ final class SessionManager: ObservableObject {
 
     private func enterDowntimeAfterSession() {
         stopTimer()
-        screenTimeManager?.stopAllMonitoring()
+        screenTimeManager?.cancelExpiryNotifications()
+        screenTimeManager?.removeBonusShield()
         let wasBonusSession = isBonusSession
         let wasDowntimeRunning = downtimeRunningDuringSession
         isBonusSession = false
@@ -153,7 +180,6 @@ final class SessionManager: ObservableObject {
 
         if wasBonusSession && wasDowntimeRunning {
             if resetDowntimeAfterSession {
-                // Start fresh downtime
                 let downtimeSeconds = downtimeDurationMinutes * 60
                 remainingDowntimeSeconds = downtimeSeconds
                 totalDowntimeSeconds = downtimeSeconds
@@ -162,7 +188,6 @@ final class SessionManager: ObservableObject {
                 transitionTo(.downtime)
                 startTimer()
             } else if remainingDowntimeSeconds > 0 {
-                // Resume remaining downtime
                 totalDowntimeSeconds = remainingDowntimeSeconds
                 screenTimeManager?.applyDowntimeShield()
                 screenTimeManager?.scheduleDowntimeMonitoring(durationSeconds: remainingDowntimeSeconds)
@@ -176,7 +201,7 @@ final class SessionManager: ObservableObject {
                 transitionTo(.idle)
             }
         } else {
-            // Normal session end or bonus from exhausted
+            // Normal break end or bonus from exhausted
             if remainingPoolSeconds <= 0 {
                 screenTimeManager?.applyExhaustedShield()
                 transitionTo(.exhausted)
@@ -196,11 +221,13 @@ final class SessionManager: ObservableObject {
 
     private func startTimer() {
         stopTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+        let t = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
             Task { @MainActor in
                 self?.tick()
             }
         }
+        RunLoop.main.add(t, forMode: .common)
+        timer = t
     }
 
     private func stopTimer() {
@@ -277,7 +304,14 @@ final class SessionManager: ObservableObject {
         persistToSwiftData()
     }
 
+    func pauseForBackground() {
+        stopTimer()
+        persistState()
+        startBackgroundEnforcement()
+    }
+
     func resumeFromBackground() {
+        stopBackgroundEnforcement()
         restoreState()
         // Re-establish listener if it was lost
         if approvedListener == nil {
@@ -285,7 +319,76 @@ final class SessionManager: ObservableObject {
         }
     }
 
+    // MARK: - Background Enforcement
+
+    private func startBackgroundEnforcement() {
+        guard phase == .active || phase == .downtime else { return }
+
+        let remaining: Int
+        switch phase {
+        case .active: remaining = remainingSessionSeconds
+        case .downtime: remaining = remainingDowntimeSeconds
+        default: return
+        }
+
+        guard remaining > 0 else { return }
+
+        print("[SessionManager] startBackgroundEnforcement: \(remaining)s remaining in \(phase)")
+
+        backgroundTaskID = UIApplication.shared.beginBackgroundTask { [weak self] in
+            // System is reclaiming — must end synchronously
+            print("[SessionManager] backgroundTask expired by system")
+            guard let self else { return }
+            self.backgroundTimer?.invalidate()
+            self.backgroundTimer = nil
+            let taskID = self.backgroundTaskID
+            self.backgroundTaskID = .invalid
+            UIApplication.shared.endBackgroundTask(taskID)
+        }
+
+        // Schedule a timer to fire when the session/downtime should end
+        let t = Timer(timeInterval: TimeInterval(remaining), repeats: false) { [weak self] _ in
+            Task { @MainActor in
+                guard let self else { return }
+                print("[SessionManager] backgroundTimer fired, phase=\(self.phase)")
+                switch self.phase {
+                case .active:
+                    self.remainingSessionSeconds = 0
+                    self.enterDowntimeAfterSession()
+                case .downtime:
+                    self.remainingDowntimeSeconds = 0
+                    self.screenTimeManager?.stopAllMonitoring()
+                    self.screenTimeManager?.removeDowntimeShield()
+                    self.screenTimeManager?.applyIdleShield()
+                    self.transitionTo(.idle)
+                default:
+                    break
+                }
+                self.stopBackgroundEnforcement()
+            }
+        }
+        RunLoop.main.add(t, forMode: .common)
+        backgroundTimer = t
+    }
+
+    private func stopBackgroundEnforcement() {
+        backgroundTimer?.invalidate()
+        backgroundTimer = nil
+        if backgroundTaskID != .invalid {
+            let taskID = backgroundTaskID
+            backgroundTaskID = .invalid
+            UIApplication.shared.endBackgroundTask(taskID)
+        }
+    }
+
     private func restoreState() {
+        // Debug: check extension callbacks
+        print("[Debug] ===== restoreState called =====")
+        let dbg = UserDefaults(suiteName: AppGroupDataStore.appGroupIdentifier)
+        print("[Debug] intervalStartedAt: \(dbg?.string(forKey: "debug_intervalStartedAt") ?? "nil")")
+        print("[Debug] thresholdFiredAt: \(dbg?.string(forKey: "debug_thresholdFiredAt") ?? "nil")")
+        print("[Debug] thresholdState: \(dbg?.string(forKey: "debug_thresholdState") ?? "nil")")
+
         phase = appGroupStore.sessionPhase
         remainingSessionSeconds = appGroupStore.remainingSessionSeconds
         remainingDowntimeSeconds = appGroupStore.remainingDowntimeSeconds
@@ -338,6 +441,25 @@ final class SessionManager: ObservableObject {
         }
     }
 
+    // MARK: - Debug Reset
+
+    func resetAll() {
+        stopTimer()
+        stopBackgroundEnforcement()
+        screenTimeManager?.stopAllMonitoring()
+        screenTimeManager?.removeAllShields()
+        ManagedSettingsStore(named: .init("test")).clearAllSettings()
+        remainingSessionSeconds = 0
+        remainingDowntimeSeconds = 0
+        isBonusSession = false
+        downtimeRunningDuringSession = false
+        let poolSeconds = dailyPoolMinutes * 60
+        remainingPoolSeconds = poolSeconds
+        appGroupStore.remainingPoolSeconds = poolSeconds
+        transitionTo(.idle)
+        syncToFirestore()
+    }
+
     // MARK: - Live App Selection
 
     /// Reapply shields for the current phase using the latest app selection.
@@ -353,7 +475,7 @@ final class SessionManager: ObservableObject {
             screenTimeManager?.removeAllShields()
             screenTimeManager?.applyExhaustedShield()
         case .active:
-            break // No shields during active sessions
+            break // No shields during break (apps are accessible)
         }
     }
 

@@ -15,7 +15,7 @@ struct WelcomeStepView: View {
                 Text("ScreenTimePool")
                     .font(.largeTitle.bold())
 
-                Text("Take control of your screen time with daily pools, sessions, and friend accountability.")
+                Text("Take control of your screen time with daily pools, breaks, and friend accountability.")
                     .font(.body)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -26,7 +26,7 @@ struct WelcomeStepView: View {
 
             VStack(spacing: 16) {
                 featureRow(icon: "timer", title: "Daily Pool", description: "Set a daily budget of screen time")
-                featureRow(icon: "play.circle", title: "Sessions", description: "Use time in focused sessions with breaks")
+                featureRow(icon: "play.circle", title: "Breaks", description: "Use your pool time in breaks with downtime")
                 featureRow(icon: "person.2", title: "Friends", description: "Request more time from friends")
             }
             .padding(.horizontal, 24)

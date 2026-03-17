@@ -57,8 +57,11 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
             subtitle = "You've used all your screen time for today. Request more time from a friend."
 
         case "downtime":
+            let dtSeconds = defaults?.integer(forKey: "remainingDowntimeSeconds") ?? 0
+            let dtMins = dtSeconds / 60
+            let dtSecs = dtSeconds % 60
             title = "Break Time"
-            subtitle = "\(poolText) pool remaining. Open ScreenTimePool to check your break timer."
+            subtitle = "\(dtMins)m \(dtSecs)s break remaining"
 
         default:
             title = "Start a Session"

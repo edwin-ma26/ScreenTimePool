@@ -22,7 +22,7 @@ struct SessionStatusBadge: View {
     private var statusText: String {
         switch phase {
         case .idle: return "Ready"
-        case .active: return "Session Active"
+        case .active: return "Break Active"
         case .downtime: return "On Break"
         case .exhausted: return "Pool Exhausted"
         }

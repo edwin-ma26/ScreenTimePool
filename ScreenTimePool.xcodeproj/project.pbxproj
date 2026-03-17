@@ -317,7 +317,7 @@
 		G140000001 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0542B5D2F3BD08200445D92 /* SocialView.swift */,
+					F0542B5D2F3BD08200445D92 /* SocialView.swift */,
 				G141000001 /* Shared */,
 				G142000001 /* Onboarding */,
 				G143000001 /* Dashboard */,
@@ -659,7 +659,7 @@
 				A100000039 /* TimeRequestsView.swift in Sources */,
 				A100000040 /* IncomingRequestRow.swift in Sources */,
 				A100000041 /* OutgoingRequestRow.swift in Sources */,
-				A100000042 /* RequestTimeSheet.swift in Sources */,
+					A100000042 /* RequestTimeSheet.swift in Sources */,
 				A100000043 /* Date+Extensions.swift in Sources */,
 				A100000044 /* TimeInterval+Formatting.swift in Sources */,
 				A100000045 /* DeviceActivityName+Extensions.swift in Sources */,

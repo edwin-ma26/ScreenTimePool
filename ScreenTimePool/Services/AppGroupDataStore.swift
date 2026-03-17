@@ -24,6 +24,7 @@ final class AppGroupDataStore {
         static let isBonusSession = "isBonusSession"
         static let downtimeRunningDuringSession = "downtimeRunningDuringSession"
         static let settingsPasscode = "settingsPasscode"
+        static let poolSecondsAtSessionStart = "poolSecondsAtSessionStart"
     }
 
     private init() {
@@ -123,6 +124,11 @@ final class AppGroupDataStore {
     var settingsPasscode: String? {
         get { defaults.string(forKey: Keys.settingsPasscode) }
         set { defaults.set(newValue, forKey: Keys.settingsPasscode) }
+    }
+
+    var poolSecondsAtSessionStart: Int {
+        get { defaults.integer(forKey: Keys.poolSecondsAtSessionStart) }
+        set { defaults.set(newValue, forKey: Keys.poolSecondsAtSessionStart) }
     }
 
     // MARK: - App Selection
